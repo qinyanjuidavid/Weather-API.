@@ -1,0 +1,28 @@
+{%extends 'myapp/base.html'%}
+{%load crispy_forms_tags%}
+{%block content%}
+<div class="container">
+  <legend>Weather update</legend>
+  <form method="POST" action="" class="col-sm-6" enctype="multipart/form-data">
+    {%csrf_token%}
+    {{form|crispy}}
+    <button class="btn btn-success">Update</button>
+    </form>
+  <div class="row">
+  {%for weather in weather%}
+  <div class="col-sm-4 p-1">
+  <div class="card">
+  <div class="card-header" style=background-color:dodgerblue;>
+    <h6 class="text-white">{{weather.city}}</h6>
+    </div>
+  <br>
+<a style=color:maroon;>Temperature: {{weather.temperature}}</a>
+
+<a style=color:maroon;>Description: {{weather.description}}</a>
+<img src="{{weather.icon}}">
+</div>
+</div>
+{%endfor%}
+</div>
+  </div>
+{%endblock%}
